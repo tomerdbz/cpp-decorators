@@ -17,7 +17,7 @@ This library proposes a solution - one that is **Simple** (~ 70 lines) and **Eas
 auto callback = &callback_function;
 
 // decltype(decorator_func) should be as decltype(callback)
-const auto decorator = make_decorator(&callback, &decorator_func);
+const auto decorator = MAKE_DECORATOR(callback, decorator_func);
 
 // this will also call decorator_func
 callback();
@@ -27,7 +27,7 @@ For more please see the tests folder :)
 
 ### Todos
 
- - Currently one can't create multiple decorations for the same function **type** simultaneously
+ - Support different calling conventions - like stdcall
  
 License
 ----
