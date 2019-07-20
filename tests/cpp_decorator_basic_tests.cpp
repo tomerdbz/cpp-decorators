@@ -49,7 +49,7 @@ TEST_CASE_METHOD(DecoratorWasCalledTestFixture, "make decoration - decoration fu
 {
 	auto func_holder = &func;
 
-	const auto decorator = make_decorator(&func_holder, &decorator_func);
+	const auto decorator = MAKE_DECORATOR(func_holder, decorator_func);
 
 	func_holder();
 
@@ -62,7 +62,7 @@ TEST_CASE_METHOD(DecoratorWasCalledTestFixture,
 	auto func_holder = &func;
 
 	{
-		const auto decorator = make_decorator(&func_holder, &decorator_func);
+		const auto decorator = MAKE_DECORATOR(func_holder, decorator_func);
 	}
 
 	func_holder();
@@ -85,7 +85,7 @@ TEST_CASE_METHOD(DecoratorWasCalledTestFixture,
 {
 	auto func_holder = &func_with_args_different_qualifiers;
 
-	const auto decorator = make_decorator(&func_holder, &decorator_func_with_args_different_qualifiers);
+	const auto decorator = MAKE_DECORATOR(func_holder, decorator_func_with_args_different_qualifiers);
 
 	char to_be_lvalue_ref = 'a';
 
@@ -113,7 +113,7 @@ TEST_CASE_METHOD(DecoratorWasCalledTestFixture,
 {
 	auto func_holder = &func_with_arg_lvalue_qualifier;
 
-	const auto decorator = make_decorator(&func_holder, &decorator_func_with_arg_lvalue_qualifier);
+	const auto decorator = MAKE_DECORATOR(func_holder, decorator_func_with_arg_lvalue_qualifier);
 
 	char to_be_lvalue_ref = 'a';
 	char value_before_func_call = to_be_lvalue_ref;

@@ -74,10 +74,49 @@ TEST_CASE_METHOD(TwoDecoratorsTestFixture,
 
 	auto func2_holder = &func2;
 
-	const auto first_decorator = make_decorator(&func_holder, &first_decorator_func);
+	const auto first_decorator = MAKE_DECORATOR(func_holder, first_decorator_func);
 
-	const auto second_decorator = make_decorator(&func2_holder, &second_decorator_func);
+	const auto second_decorator = MAKE_DECORATOR(func2_holder, second_decorator_func);
 
 	REQUIRE(std::is_same_v<decltype(first_decorator), decltype(second_decorator)> == false);
 
+}
+
+
+// These tests will cause an access violation - for now ;)
+
+TEST_CASE_METHOD(TwoDecoratorsTestFixture,
+	"make 2 decorations for 2 different functions - assert both decoration functions are called once")
+{
+	auto func_holder = &func;
+
+	auto func2_holder = &func2;
+
+	const auto first_decorator = MAKE_DECORATOR(func_holder, first_decorator_func);
+
+	const auto second_decorator = MAKE_DECORATOR(func2_holder, second_decorator_func);
+
+	func_holder();
+
+	func2_holder();
+
+	REQUIRE(get_first_decorator_call_amount() == 1);
+
+	REQUIRE(get_second_decorator_call_amount() == 1);
+}
+
+TEST_CASE_METHOD(TwoDecoratorsTestFixture,
+	"make 2 decorations for same function - assert both decoration functions are called once")
+{
+	auto func_holder = &func;
+
+	const auto first_decorator = MAKE_DECORATOR(func_holder, first_decorator_func);
+
+	const auto second_decorator = MAKE_DECORATOR(func_holder, second_decorator_func);
+
+	func_holder();
+
+	REQUIRE(get_first_decorator_call_amount() == 1);
+
+	REQUIRE(get_second_decorator_call_amount() == 1);
 }

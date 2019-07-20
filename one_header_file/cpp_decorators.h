@@ -4,13 +4,20 @@
 template<std::size_t ID, typename Func>
 class decorator;
 
-template<typename Func>
-constexpr auto make_decorator(
-	Func * function_address,
-	Func decoration)
+namespace details
 {
-	return decorator<__COUNTER__, Func>(function_address, decoration);
+
+	template<typename Func, std::size_t ID = 0>
+	constexpr auto make_decorator(
+		Func * function_address,
+		Func decoration)
+	{
+		return decorator<ID, Func>(function_address, decoration);
+	}
+
 }
+
+#define MAKE_DECORATOR(func_variable, decorator_func) details::make_decorator<decltype(func_variable), __COUNTER__>(&func_variable, &decorator_func)
 
 template<std::size_t ID, typename RetType, typename... Args>
 class decorator<ID, RetType(*)(Args...)>
@@ -44,8 +51,6 @@ public:
 	~decorator()
 	{
 		*m_function_address = m_function;
-
-		m_function_address = nullptr;
 	}
 
 private:
