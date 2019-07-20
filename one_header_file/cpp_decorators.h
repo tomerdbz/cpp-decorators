@@ -6,7 +6,6 @@ class decorator;
 
 namespace details
 {
-
 	template<typename Func, std::size_t ID = 0>
 	constexpr auto make_decorator(
 		Func * function_address,
@@ -17,7 +16,8 @@ namespace details
 
 }
 
-#define MAKE_DECORATOR(func_variable, decorator_func) details::make_decorator<decltype(func_variable), __COUNTER__>(&func_variable, &decorator_func)
+#define MAKE_DECORATOR(func_variable, decorator_func) \
+details::make_decorator<decltype(func_variable), __COUNTER__>(&func_variable, &decorator_func)
 
 template<std::size_t ID, typename RetType, typename... Args>
 class decorator<ID, RetType(*)(Args...)>
