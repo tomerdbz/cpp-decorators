@@ -28,7 +28,7 @@ For more please see the tests folder :)
 ### Todos
 
  - Currently one can't create multiple decorations for the same function **type** simultaneously
- - 
+ 
 License
 ----
 
