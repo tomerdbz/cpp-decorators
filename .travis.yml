@@ -10,6 +10,11 @@ addons:
 stages:
   - build
   - test
+
+cache:
+  directories:
+  - bin
+
 jobs:
   include:
     -
