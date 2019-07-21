@@ -26,7 +26,7 @@ class decorator<ID, RetType(*)(Args...)>
 	using FuncAddressType = RetType(**)(Args...);
 
 public:
-	decorator(FuncAddressType function_address, FuncType decoration)
+	constexpr decorator(FuncAddressType function_address, FuncType decoration)
 	{
 		if (function_address == nullptr)
 		{
