@@ -7,9 +7,23 @@ addons:
     packages:
       - gcc-7
       - g++-7
-script:
-  - export CC=gcc-7
-  - export CXX=g++-7
-  - cmake CMakeLists.txt
-  - make
-  - ./bin/cpp_decorators_tests
+stages:
+  - build
+  - test
+
+cache:
+  directories:
+  - bin
+
+jobs:
+  include:
+    -
+      stage: build
+      script:
+        - 'export CC=gcc-7'
+        - 'export CXX=g++-7'
+        - 'cmake CMakeLists.txt'
+        - make
+    -
+      stage: test
+      script: ./bin/cpp_decorators_tests
