@@ -1,5 +1,5 @@
 # cpp-decorators
-
+[![Build Status](https://travis-ci.org/tomerdbz/cpp-decorators.svg?branch=master)](https://travis-ci.org/tomerdbz/cpp-decorators)
 
 Anyone who's had a fair share doing OOP programming is probably familiar with a somewhat tricky - sometimes very effective pattern called **Decorator**.
 
