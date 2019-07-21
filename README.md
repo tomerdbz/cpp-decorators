@@ -16,7 +16,7 @@ This library proposes a solution - one that is **Simple** (~ 70 lines) and **Eas
 ```c
 auto callback = &callback_function;
 
-// decltype(decorator_func) should be as decltype(callback)
+// decltype(&decorator_func) should be as decltype(callback)
 const auto decorator = MAKE_DECORATOR(callback, decorator_func);
 
 // this will also call decorator_func
