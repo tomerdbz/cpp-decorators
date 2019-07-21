@@ -1,0 +1,15 @@
+dist: trusty
+language: cpp
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+      - g++-7
+script:
+  - export CC=gcc-7
+  - export CXX=g++-7
+  - cmake CMakeLists.txt
+  - make
+  - ./bin/cpp_decorators_tests
