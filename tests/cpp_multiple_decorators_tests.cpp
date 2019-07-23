@@ -79,11 +79,8 @@ TEST_CASE_METHOD(TwoDecoratorsTestFixture,
 	const auto second_decorator = MAKE_DECORATOR(func2_holder, second_decorator_func);
 
 	REQUIRE(std::is_same_v<decltype(first_decorator), decltype(second_decorator)> == false);
-
 }
 
-
-// These tests will cause an access violation - for now ;)
 
 TEST_CASE_METHOD(TwoDecoratorsTestFixture,
 	"make 2 decorations for 2 different functions - assert both decoration functions are called once")
